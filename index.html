@@ -27,7 +27,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100dvh;
             background-color: rgb(253,246,230);
         }
         .section__calculator {
@@ -128,12 +128,17 @@
             .section__calculator {
                 flex-direction: column;
                 align-items: center;
-
             }
         }
         @media (max-height: 830px) {
             main {
                 align-items: flex-start;
+            }
+            .calculator__box {
+                margin-top: 20px;
+            }
+            .calculator__tips--wrapper {
+                margin-top: 20px;
             }
         }
     </style>
