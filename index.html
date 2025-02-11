@@ -57,13 +57,13 @@
             text-align: right;
             padding: 10px;
             border-radius: 10px;
-            min-height: 100px;
+            min-height: 110px;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
         .calculator__display--current-equation {
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: bold;
         }
         .calculator__display--previous-equation {
@@ -225,7 +225,7 @@
                 return;
             }
         }
-            if (current.innerText.length < 11) {
+            if (current.innerText.length < 12) {
                 if (current.innerText === "0" && !operators.includes(num)) {
                     current.innerText = num;
                 } else {
