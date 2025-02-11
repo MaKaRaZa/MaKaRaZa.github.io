@@ -23,7 +23,7 @@
             font-family: "Poppins", sans-serif;
             margin: 0;
         }
-        .main {
+        main {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -131,10 +131,15 @@
 
             }
         }
+        @media (max-height: 830px) {
+            main {
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
-    <main class="main">
+    <main>
         <section class="section__calculator">
             <div class="calculator__box">
                 <div class="calculator">
