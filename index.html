@@ -255,6 +255,9 @@
                 let result = eval(current.innerText.replace('÷', '/').replace('×', '*'));
                 previous.innerText = current.innerText;
                 current.innerText = result;
+                if (current.innerText.length > 12) {
+                    current.innerText = current.innerText.slice(0, 12);
+                }
             } catch {
                 current.innerText = "Ошибка";
             }
