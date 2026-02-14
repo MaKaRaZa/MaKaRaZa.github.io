@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- canvas-confetti для сердечек-конфетти -->
+  <!-- canvas-confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <style>
@@ -56,9 +56,11 @@
     .scene {
       perspective: 1400px;
       position: relative;
-      width: 570px;
-      height: 780px;
-      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .envelope {
@@ -84,7 +86,7 @@
     }
 
     .envelope.open {
-      transform: translateY(-90px) rotateX(22deg);
+      transform: translateY(-60px) rotateX(18deg);
     }
 
     .envelope::before {
@@ -145,30 +147,33 @@
 
     .letter {
       position: absolute;
-      width: 450px;
-      min-height: 570px;
+      width: 90%;
+      max-width: 480px;
+      min-height: 60vh;
+      max-height: 85vh;
       background: #fffef7;
-      left: 45px;
-      top: 60px;
-      padding: 52px 45px;
+      padding: 40px 35px;
       box-sizing: border-box;
       border: 1.5px solid #eee;
       box-shadow: 0 15px 52px rgba(0,0,0,0.25);
       opacity: 0;
-      transform: translateY(100px) scale(0.92);
+      transform: translate(-50%, -50%) scale(0.92);
       transition: all 1.5s ease 0.5s;
       z-index: 3;
       pointer-events: none;
       line-height: 1.65;
       color: #111;
-      font-size: 1.85rem;
+      font-size: 1.9rem;
       text-align: center;
       font-family: 'Caveat', cursive;
+      top: 50%;
+      left: 50%;
+      overflow-y: auto;
     }
 
     .envelope.open ~ .letter {
       opacity: 1;
-      transform: translateY(-240px) scale(1);
+      transform: translate(-50%, -50%) scale(1);
       pointer-events: auto;
       box-shadow: 0 20px 80px rgba(233, 30, 99, 0.35),
                   inset 0 0 40px rgba(255, 255, 255, 0.6);
@@ -204,7 +209,7 @@
 
     .signature {
       text-align: right;
-      margin-top: 4.5em;
+      margin-top: 4em;
       font-style: italic;
       font-size: 2.8rem;
       color: #c62828;
@@ -221,11 +226,11 @@
 
     .hint {
       position: absolute;
-      bottom: -70px;
+      bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
       color: #880e4f;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 500;
       opacity: 0.9;
       transition: opacity 0.7s;
@@ -250,10 +255,8 @@
 
 <div id="hearts"></div>
 
-<!-- Тихая романтическая музыка (короткий loop, royalty-free пример) -->
 <audio id="bgMusic" loop volume="0.25">
   <source src="https://cdn.pixabay.com/audio/2023/08/07/audio_8d9b7d5e7a.mp3" type="audio/mpeg">
-  <!-- Замени на любой короткий романтический piano mp3, если хочешь -->
 </audio>
 
 <div class="scene">
@@ -285,11 +288,10 @@
   envelope.addEventListener('click', () => {
     envelope.classList.toggle('open');
     if (envelope.classList.contains('open')) {
-      music.play().catch(() => console.log("Автозапуск музыки заблокирован браузером"));
+      music.play().catch(() => {});
     }
   });
 
-  // Конфетти-сердечки при открытии
   envelope.addEventListener('transitionend', function(e) {
     if (e.propertyName === 'transform' && this.classList.contains('open')) {
       const heartShape = confetti.shapeFromPath({
@@ -310,7 +312,6 @@
     }
   });
 
-  // Сердечки на фоне (крупные)
   const container = document.getElementById('hearts');
 
   function createHeart() {
